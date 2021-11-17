@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Day 7</title>
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			.row {
+				margin: 10% 10%;
+				display: flex;
+			}
+			.text {
+				margin-left: 2%;
+                margin-top: 7%;
+                color: cadetblue;
+			}
+            .countdown{
+                display: flex;
+                margin-top: -10%;
+                font-weight: bold;
+                font-size: 40px;
+            }
+            .display {
+                margin-right: 2%;
+            }
+		</style>
+	</head>
+	<body>
+		<div class="row">
+			<img src="images/paris.jpg" alt="paris" width="350" height="300" />
+			<div class="text">
+				<h2>Buy Cheap Tickets to Paris this Christmas</h2>
+                <p>Promo ends in:</p>
+				<div class="countdown">
+					<p class="display" id="days"></p>
+					<p class="display" id="hours"></p>
+					<p class="display"id="mins"></p>
+					<p class="display"id="secs"></p>
+					<h2 class="display"id="end"></h2>
+				</div>
+			</div>
+		</div>
+		<script>
+			// The data/time we want to countdown to
+			let countDownDate = new Date("Nov 25, 2021 16:37:52").getTime();
+
+			// Run myfunc every second
+			let myfunc = setInterval(function () {
+				let now = new Date().getTime();
+				let timeleft = countDownDate - now;
+
+				// Calculating the days, hours, minutes and seconds left
+				let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+				let hours = Math.floor(
+					(timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+				);
+				let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+				let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+
+				// Result is output to the specific element
+				document.getElementById("days").innerHTML = days + "days ";
+				document.getElementById("hours").innerHTML = hours + "hours ";
+				document.getElementById("mins").innerHTML = minutes + "mins ";
+				document.getElementById("secs").innerHTML = seconds + "s ";
+
+				// Display the message when countdown is over
+				if (timeleft < 0) {
+					clearInterval(myfunc);
+					document.getElementById("days").innerHTML = "";
+					document.getElementById("hours").innerHTML = "";
+					document.getElementById("mins").innerHTML = "";
+					document.getElementById("secs").innerHTML = "";
+					document.getElementById("end").innerHTML = "Promo Has Ended";
+				}
+			}, 1000);
+		</script>
+	</body>
+</html>
